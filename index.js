@@ -7,7 +7,7 @@ config()
 const port = process.env.PORT || 3000
 const app=express()
 app.use(express.json())
-app.use(shorterRouter)
+app.use("/url",shorterRouter)
 
 db_connection()
 app.listen(port,()=>{
