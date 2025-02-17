@@ -18,3 +18,16 @@ export const shorterURL=async(req,res,next) => {
     res.status(201).json({shortUrl:newUrl.shortUrl})
     
 }
+export const getURL=async(req,res,next) => {
+    const {shortUrl}=req.body
+
+    if(!shortUrl)return res.status(404).json({message:"please provide shortUrl"})
+    if(!shortUrl.startsWith(process.env.BASE_URL))return res.status(404).json({message:"invalid url"})
+
+
+    const urlCode=shortUrl.split('/')[1]
+    const url=await urlModel.findOne({urlCode})
+    if(!url)return res.status(404).json({message:"url not found"})
+
+    res.redirect(url.longUrl)
+}
