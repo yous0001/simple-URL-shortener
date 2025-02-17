@@ -1,5 +1,5 @@
 import express from "express"
-import db_connection from "./DB/db_connection"
+import db_connection from "./DB/db_connection.js"
 import shorterRouter from "./Routes/shorter.router.js"
 import { config } from "dotenv"
 
@@ -11,5 +11,5 @@ app.use(shorterRouter)
 
 db_connection()
 app.listen(port,()=>{
-    console.log(`listening on port ${port}`)
+    console.log(`app is running on port ${port}`)
 })
