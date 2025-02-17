@@ -25,7 +25,7 @@ export const getURL=async(req,res,next) => {
     if(!shortUrl.startsWith(process.env.BASE_URL))return res.status(404).json({message:"invalid url"})
 
 
-    const urlCode=shortUrl.split('/')[1]
+    const urlCode=shortUrl.split(process.env.BASE_URL+"/")[1]
     const url=await urlModel.findOne({urlCode})
     if(!url)return res.status(404).json({message:"url not found"})
 
